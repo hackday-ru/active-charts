@@ -117,6 +117,7 @@
     <Content Include="Content\images\bg_header.jpg" />
     <Content Include="Content\images\gt_favicon.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo.svg" />
     <Content Include="Content\images\mac.jpg" />
     <Content Include="Content\main.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -148,7 +149,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChartData.cs" />
-    <Compile Include="Models\Observe.cs" />
     <Compile Include="Models\ObservedData.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
