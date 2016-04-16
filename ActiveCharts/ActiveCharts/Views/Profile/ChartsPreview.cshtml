@@ -1,0 +1,13 @@
+﻿
+@model List<Models.ChartData>
+
+@{
+	Layout = null;
+}
+
+@foreach (var chart in Model)
+{
+	<div class="col-md-12">
+		<iframe src="@Url.Action("GetChart","Profile", new {dataSetName = chart.ObservedDataId})" style="border: 0;  width:100%; height:100%"></iframe>
+	</div>
+}

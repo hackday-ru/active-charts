@@ -54,5 +54,11 @@ namespace ActiveCharts.Services
 				UserId = currentUser
 			});
 	    }
+
+	    public List<ChartData> GetUserCharts(string currentUser)
+	    {
+			var collection = db.GetCollection<ChartData>("chartdata");
+		    return collection.FindSync(c => c.UserId == currentUser).ToList();
+	    }
     }
 }
