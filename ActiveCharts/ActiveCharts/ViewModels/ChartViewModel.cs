@@ -9,5 +9,7 @@ namespace ActiveCharts.ViewModels
 	{
 		public string Id { get; set; }
 		public string Data { get; set; }
+        public string PngLink { get; set; }
+        public string IframeLink { get; set; }
 	}
 }
