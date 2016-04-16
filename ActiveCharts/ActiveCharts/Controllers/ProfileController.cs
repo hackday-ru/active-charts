@@ -31,8 +31,18 @@ namespace ActiveCharts.Controllers
 				var data = observeService.GetObservedData(chartId);
 		        model.Id = chartId;
 		        model.Data = data;
+	            model.IframeLink = GetIframeLink(chartId);
 	        }
 			return View(model);
+        }
+
+        private string GetIframeLink(string chartId)
+        {
+            var s = "<iframe src=\"{0}\" frameborder=\"0\"> </iframe>";
+            var url = Url.Action("GetChart", "Profile", new {dataSetName = chartId}, this.Request.Url.Scheme);
+            //http://localhost:3014/Profile/GetChart?dataSetName=7e7c2d7b-c605-47de-9ff5-ea3c2580b3e0
+            var res = string.Format(s, url);
+            return res;
         }
 
 		public ActionResult GetChart(string dataSetName)
