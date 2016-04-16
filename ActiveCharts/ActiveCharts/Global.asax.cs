@@ -35,6 +35,7 @@ namespace ActiveCharts
 
             builder.RegisterType<AuthService>().As<IAuthService>().InstancePerRequest();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerRequest();
+            builder.RegisterType<ObserveService>().As<IObserveService>().InstancePerRequest();
 
             builder.RegisterControllers(typeof(BaseController).Assembly).PropertiesAutowired();
 
