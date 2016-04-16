@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     
     if (request.action == "getSelection") {
         var selection = window.getSelection();
-        if (selection) {
+        if (selection.focusNode) {
             var currentObject = selection.focusNode.parentElement;
             var xpath = ActiveCharts.getXPath(currentObject);
             console.log("xpath: " + xpath);
@@ -25,16 +25,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
             var requestStatus = ActiveCharts.sendData({'xpath': xpath, 'url': request.url, 'token': request.token});
             requestStatus.done(function () {
-                console.log("success");
-                message = "success";
+                message = "Current value saved";
             }).fail(function () {
-                console.log("error");
-                message = "error";
+                message = "Error during saving value";
             }).always(function () {
-                sendResponse({"requestStatus": message});
+                alert(message);
             });
         } else {
-            sendResponse({});
+            alert("current value not selected");
         }
     } else {
         sendResponse({});
