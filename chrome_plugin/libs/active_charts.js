@@ -24,9 +24,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             var message = '';
 
             var requestStatus = ActiveCharts.sendData({'xpath': xpath, 'url': request.url, 'token': request.token});
-            requestStatus.done(function () {
+            requestStatus.done(function (data) {
                 message = "Current value saved";
-            }).fail(function () {
+            }).fail(function (data) {
                 message = "Error during saving value";
             }).always(function () {
                 alert(message);
