@@ -10,5 +10,6 @@ namespace ActiveCharts.Services.Interfaces
     public interface IUserService
     {
         User GetUser(string nickname);
+        bool Login(string nickname, string password);
     }
 }
