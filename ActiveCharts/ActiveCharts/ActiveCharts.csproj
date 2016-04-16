@@ -143,6 +143,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LController.cs" />
     <Compile Include="Controllers\ObserveController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,6 +186,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\L\" />
     <Folder Include="Views\Observe\" />
   </ItemGroup>
   <ItemGroup>
