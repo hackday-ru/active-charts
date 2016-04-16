@@ -1,0 +1,21 @@
+.loginButtons {
+    text-align: right;
+}
+
+.loginButtons .button {
+    border: 1px solid #4285F4;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.loginButtons .button:hover {
+    background-color: #4285F4;
+    color: white;
+}
+
+.loginButtons .button:active {
+    background-color: rgba(68, 141, 255, 0.6);
+    color: white;
+}
