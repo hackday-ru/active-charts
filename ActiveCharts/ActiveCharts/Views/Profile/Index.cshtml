@@ -13,17 +13,7 @@
 				<div class="col-xs-12 text-center">
 					<h2>My Charts</h2>
 
-					@foreach (var id in Model)
-					{
-						<div class="row widget">
-							<div class="col-xs-12">
-								<h4>16.04.2016</h4>
-								<p>
-									<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR9-EzylOIy6ogOcSyrwEHvtVcGBA1xir_looIX1Mv1KdF-27Us" width="100" height="100">
-								</p>
-							</div>
-						</div>
-					}
+					@{ Html.RenderAction("GetChartsPreview"); }
 				</div>
 
 

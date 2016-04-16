@@ -42,5 +42,12 @@ namespace ActiveCharts.Controllers
 		    observeService.SaveChart(data, CurrentUser);
 		    return null;
 	    }
+
+	    public ActionResult GetChartsPreview()
+	    {
+		    var charts = observeService.GetUserCharts(CurrentUser);
+
+		    return View("ChartsPreview", charts);
+	    }
     }
 }
