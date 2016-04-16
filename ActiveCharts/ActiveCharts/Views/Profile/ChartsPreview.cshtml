@@ -7,7 +7,10 @@
 
 @foreach (var chart in Model)
 {
-	<div class="col-md-12 chartPreview" id="@chart.ObservedDataId">
-		<iframe src="@Url.Action("GetChart","Profile", new {dataSetName = chart.ObservedDataId}, this.Request.Url.Scheme)" style="border: 0;  width:100%; height:100%" class="chartPreview"></iframe>
+	<div class="col-md-12 text-center chartPreview" id="@chart.ObservedDataId">
+		<span class="label label-default" style="cursor: pointer">@chart.DateTime</span>
+	</div>
+	<div class="col-md-12">
+		<iframe src="@Url.Action("GetChart", "Profile", new {dataSetName = chart.ObservedDataId}, this.Request.Url.Scheme)" style="border: 0; width: 100%; height: 100%"></iframe>
 	</div>
 }

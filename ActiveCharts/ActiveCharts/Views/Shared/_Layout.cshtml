@@ -30,7 +30,8 @@
                 <ul class="nav navbar-nav pull-right">
                     @if (ViewBag.CurrentUser != null)
                     {
-                        <li><a href="@Url.Action("Index", "Profile")">Profile</a></li>
+                        <li><a class="btn" href="@Url.Action("Index", "Profile")">Profile</a></li>
+                        <li><a class="btn" href="@Url.Action("Logout", "Account")">Logout</a></li>
                     }
                     else
                     {

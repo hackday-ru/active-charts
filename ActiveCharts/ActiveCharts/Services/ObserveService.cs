@@ -51,7 +51,8 @@ namespace ActiveCharts.Services
 			{
 				ObservedDataId = Guid.NewGuid().ToString(),
 				Data = data,
-				UserId = currentUser
+				UserId = currentUser,
+				DateTime = DateTime.Now
 			});
 	    }
 

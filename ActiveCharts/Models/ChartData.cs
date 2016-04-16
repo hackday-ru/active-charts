@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using System;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models
 {
@@ -9,5 +10,6 @@ namespace Models
         public string ObserveId { get; set; }
         public string Data { get; set; }
         public string UserId { get; set; }
+		public DateTime DateTime { get; set; }
     }
 }
