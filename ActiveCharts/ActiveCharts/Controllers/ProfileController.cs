@@ -37,6 +37,11 @@ namespace ActiveCharts.Controllers
 			return View(model);
         }
 
+	    public ActionResult CreateChartWithUrl(string url)
+	    {
+		    return null;
+	    }
+
         private string GetIframeLink(string chartId)
         {
             var s = "<iframe src=\"{0}\" frameborder=\"0\"> </iframe>";
