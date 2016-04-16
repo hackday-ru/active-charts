@@ -1,47 +1,51 @@
 ﻿@model ActiveCharts.ViewModels.ChartViewModel
 @{
-    Layout = null;
+	Layout = null;
 }
 
-<div style="background-color: #eef0f2; margin-bottom: 15px">
-    <div style="padding: 5px 15px 15px 15px">
-        <div id="wrapperChart">
-            <label class="form-title">Chart data</label>
-            <textarea id="chartData" class="chartDataArea form-field" placeholder="Input chart's data">@Model.Data</textarea>
-            <div style="display: inline">
+<div class="col-md-12" style="background-color: #eef0f2;">
+	<div style="padding: 5px 15px 15px 15px">
+		<div class="form-group">
+			<label> Chart data:</label>
+			<textarea id="chartData" class="chartDataArea form-control" placeholder="Input chart's data">@Model.Data</textarea>
+		</div>
+		<div class="col-md-12">
+			<button onclick=' render() ' class="btn btn-action pull-right">Build</button>
+		</div>
 
-                <label class="form-title">Height</label>
-                <input type="text" id="chartHeight" class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartHeight ?? 400)" />
+		<div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px">
+			<div id='editorChart'></div>
+		</div>
 
-                <label class="form-title">Width</label>
-                <input type="text" id="chartWidth" class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartWidth ?? 400)" />
-                <div style="float: right">
-                    @*<button onclick='configureChart(@Model) ' class="btn btn-info">Настройка</button>*@
-                    <button onclick='render()' class="btn btn-success">Build</button>
-                </div>
-            </div>
-	        <div id='@string.Format("editorChart", Model)' style="margin: auto"></div>
-			@if (string.IsNullOrEmpty(Model.Id))
-			{
-				<button onclick='save()' class="btn btn-success" id="chartSave" style="display: none">Save</button>
-			}
-			else
-			{
-				<button onclick="update('@Model.Id')" class="btn btn-success" id="chartSave" style="display: none">Save</button>
-			}
-        </div>
-    </div>
-    <br/>
+		@if (string.IsNullOrEmpty(Model.Id))
+		{
+			<div class="col-md-12">
+				<button onclick='save()' class="btn btn-success pull-right" id="chartSave" style="display: none">Save</button>
+			</div>
+		}
+		else
+		{
+			<div class="col-md-12">
+				<button onclick="update('@Model.Id')" class="btn btn-success pull-right" id="chartSave" style="display: none">Save</button>
+			</div>
+		}
 
-    <div>
-        <div class="form-group">
-            <label>png link</label>
-            <input type="text" class="form-control" value="@Model.PngLink">
-        </div>
-        <div class="form-group">
-            <label>Chart embed code</label>
-            <textarea class="form-control">@Html.Raw(Model.IframeLink)</textarea>
-        </div>
-    </div>
+
+		@if (!String.IsNullOrEmpty(Model.PngLink))
+		{
+			<div class="form-group">
+				<label>png link:</label>
+				<input type="text" class="form-control" value="@Model.PngLink">
+			</div>
+		}
+		@if (!String.IsNullOrEmpty(Model.IframeLink))
+		{
+			<div class="form-group">
+				<label>Chart embed code:</label>
+				<textarea class="form-control">@Html.Raw(Model.IframeLink)</textarea>
+			</div>
+		}
+	</div>
+
 </div>
 

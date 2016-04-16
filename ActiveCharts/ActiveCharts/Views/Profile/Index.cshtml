@@ -44,7 +44,7 @@
 			$.get('/Profile/CreateChart')
 				.done(function (data) {
 					$('#current_chart').html(data);
-					drawVisualization();
+					
 				});
 		}
 
@@ -95,11 +95,9 @@
 		}
 
 		function render() {
-			var height = $('#chartHeight').val();
-			var width = $('#chartWidth').val();
-
-			$('#editorChart').width(width);
-			$('#editorChart').height(height);
+			drawVisualization();
+			//$('#editorChart').width(680);
+			//$('#editorChart').height(380);
 
 			parseData();
 			wrapper.draw();
