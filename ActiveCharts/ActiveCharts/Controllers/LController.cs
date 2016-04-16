@@ -8,10 +8,9 @@ namespace ActiveCharts.Controllers
 {
     public class LController : Controller
     {
-        // GET: L
-        public ActionResult Index()
+        public ActionResult P(string id)
         {
-            return View();
+            return null;
         }
     }
 }
