@@ -7,6 +7,6 @@ namespace ActiveCharts.Models
 {
     public class User
     {
-        string Nickname { get; set; }
+        public string Nickname { get; set; }
     }
 }
