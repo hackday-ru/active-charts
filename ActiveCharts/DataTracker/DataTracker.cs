@@ -21,6 +21,7 @@ namespace DataTracker
 
         public decimal GetDataByXPath(string url, string xpath)
         {
+            return 1.0m;
             var tracker = new SeleniumTracker.SeleniumTracker();
             var element = tracker.GetDataByXPath(url, xpath);
             var data = MineData(element);

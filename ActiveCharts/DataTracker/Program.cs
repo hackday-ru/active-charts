@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Threading;
 using MongoDB.Driver;
 
 namespace DataTracker
@@ -22,22 +23,29 @@ namespace DataTracker
                     try
                     {
                         var data = dataTracker.GetDataByXPath(observe.Url, observe.XPath);
-                        dataCollection.InsertOne(new ObservedData
+                        var r = dataCollection.FindSync(d => d.ObserveId == observe._id).FirstOrDefault();
+                        if (r == null)
                         {
-                            Date = DateTime.Now,
-                            ObserveId = observe.Id,
-                            Value = data
-                        });
+                            dataCollection.InsertOne(new ObservedData
+                            {
+                                ObserveId = observe._id,
+                                ChartData = "Date Value" + Environment.NewLine + DateTime.Now.ToString() + " " + data
+                            });
+                        }
+                        else
+                        {
+                            r.ChartData = r.ChartData + Environment.NewLine + DateTime.Now.ToString() + " " + data;
+                            dataCollection.ReplaceOne(o => o._id == r._id, r);
+                        }
                     }
-                    catch 
+                    catch (Exception ex)
                     {
-                        
+                        Console.WriteLine(ex);
                     }
                 }
+
+                Thread.Sleep(1000);
             }
-            dataTracker.GetDataByXPath("http://www.cbr.ru/", "//*[@id=\"widget_exchange\"]/div/table/tbody/tr[2]/td[2]");
-            //"//*[@id="widget_exchange"]/div/table/tbody/tr[2]/td[2]/text()"
-            Console.ReadLine();
         }
     }
 }

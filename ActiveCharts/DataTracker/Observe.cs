@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace DataTracker
 {
@@ -6,7 +7,7 @@ namespace DataTracker
 
     public class Observe
     {
-        public string Id { get; set; }
+        public ObjectId _id { get; set; }
         public string UserId { get; set; }
         public string Url { get; set; }
         public string XPath { get; set; }
