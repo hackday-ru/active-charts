@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTracker", "DataTracker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumTracker", "SeleniumTracker\SeleniumTracker.csproj", "{9B646CC2-50B7-4831-90CA-C9D85A1948EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{1CBA0DB2-06B5-40D2-B33B-1A26BE883B1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9B646CC2-50B7-4831-90CA-C9D85A1948EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B646CC2-50B7-4831-90CA-C9D85A1948EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B646CC2-50B7-4831-90CA-C9D85A1948EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CBA0DB2-06B5-40D2-B33B-1A26BE883B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CBA0DB2-06B5-40D2-B33B-1A26BE883B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CBA0DB2-06B5-40D2-B33B-1A26BE883B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CBA0DB2-06B5-40D2-B33B-1A26BE883B1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

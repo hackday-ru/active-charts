@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Threading;
+using Models;
 using MongoDB.Driver;
 
 namespace DataTracker
@@ -13,7 +14,7 @@ namespace DataTracker
             string DbName = "activeCharts";
             var db = client.GetDatabase(DbName);
             var observeCollection = db.GetCollection<Observe>("observe");
-            var dataCollection = db.GetCollection<ObservedData>("observeddata");
+            var dataCollection = db.GetCollection<ChartData>("chartdata");
             var dataTracker = new DataTracker();
             while (true)
             {
@@ -26,15 +27,16 @@ namespace DataTracker
                         var r = dataCollection.FindSync(d => d.ObserveId == observe.ObserveId).FirstOrDefault();
                         if (r == null)
                         {
-                            dataCollection.InsertOne(new ObservedData
+                            dataCollection.InsertOne(new ChartData
                             {
                                 ObserveId = observe.ObserveId,
-                                ChartData = "Date Value" + Environment.NewLine + DateTime.Now.ToString() + " " + data
+                                Data = "Date Value" + Environment.NewLine + DateTime.Now.ToString() + " " + data,
+                                UserId = observe.UserId
                             });
                         }
                         else
                         {
-                            r.ChartData = r.ChartData + Environment.NewLine + DateTime.Now.ToString() + " " + data;
+                            r.Data = r.Data + Environment.NewLine + DateTime.Now.ToString() + " " + data;
                             dataCollection.ReplaceOne(o => o.ObservedDataId == r.ObservedDataId, r);
                         }
                     }

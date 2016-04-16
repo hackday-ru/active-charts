@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using ActiveCharts.Models;
 using ActiveCharts.Services.Interfaces;
+using Models;
 using MongoDB.Driver;
 
 namespace ActiveCharts.Services
@@ -34,11 +35,11 @@ namespace ActiveCharts.Services
 
         public string GetObservedData(string id)
         {
-            var collection = db.GetCollection<ObservedData>("observerdata");
+            var collection = db.GetCollection<ChartData>("chartdata");
             var r = collection.FindSync(o => o.ObservedDataId == id).FirstOrDefault();
             if (r != null)
             {
-                return r.ChartData;
+                return r.Data;
             }
             return "";
         }
