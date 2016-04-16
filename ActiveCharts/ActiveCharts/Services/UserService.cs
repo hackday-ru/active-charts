@@ -28,5 +28,30 @@ namespace ActiveCharts.Services
 
             return user;
         }
+
+        public bool Login(string nickname, string password)
+        {
+            var user = GetUser(nickname);
+
+            if (user == null)
+            {
+                var usersCollection = db.GetCollection<User>("users");
+
+                usersCollection.InsertOneAsync(new User
+                {
+                    Nickname = nickname,
+                    Password = password
+                }).GetAwaiter().GetResult();
+
+                return true;
+            }
+
+            if (user.Password == password)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
