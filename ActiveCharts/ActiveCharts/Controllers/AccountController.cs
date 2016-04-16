@@ -36,5 +36,13 @@ namespace ActiveCharts.Controllers
             ViewBag.ErrorText = "wrong password";
             return View("Login");
         }
+
+	    public JsonResult GetToken(string nickname, string password)
+	    {
+		    if (!userService.Login(nickname, password)) return null;
+
+		    var token = userService.CreateToken(nickname);
+		    return Json(token, JsonRequestBehavior.AllowGet);
+	    }
     }
 }

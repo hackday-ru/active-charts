@@ -53,5 +53,25 @@ namespace ActiveCharts.Services
 
             return false;
         }
+
+	    public string CreateToken(string nickname)
+	    {
+			var usersCollection = db.GetCollection<User>("users");
+			var user = usersCollection.Find(node => node.Nickname == nickname).FirstOrDefault();
+
+			var token = Guid.NewGuid().ToString();
+		    user.Token = token;
+			usersCollection.ReplaceOne(c => c.Nickname == nickname, user);
+
+		    return token;
+	    }
+
+	    public string GetNicknameByToken(string token)
+	    {
+			var usersCollection = db.GetCollection<User>("users");
+			var user = usersCollection.Find(node => node.Token == token).FirstOrDefault();
+
+		    return user.Nickname;
+	    }
     }
 }

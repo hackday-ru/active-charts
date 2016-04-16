@@ -11,5 +11,7 @@ namespace ActiveCharts.Services.Interfaces
     {
         User GetUser(string nickname);
         bool Login(string nickname, string password);
+	    string CreateToken(string nickname);
+	    string GetNicknameByToken(string token);
     }
 }

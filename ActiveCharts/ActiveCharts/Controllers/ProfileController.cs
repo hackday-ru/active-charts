@@ -11,10 +11,12 @@ namespace ActiveCharts.Controllers
     public class ProfileController : BaseController
     {
         private IObserveService observeService;
+		private IUserService userService;
 
-        public ProfileController(IObserveService observeService)
+        public ProfileController(IObserveService observeService, IUserService userService)
         {
             this.observeService = observeService;
+			this.userService = userService;
         }
         public ActionResult Index()
         {
@@ -56,7 +58,8 @@ namespace ActiveCharts.Controllers
 	    {
 	        if (!string.IsNullOrEmpty(token))
 	        {
-                var charts = observeService.GetUserCharts("qwerty");
+		        var nickname = userService.GetNicknameByToken(token);
+				var charts = observeService.GetUserCharts(nickname);
                 return View("ChartsPreview", charts);
             }
 	        else
