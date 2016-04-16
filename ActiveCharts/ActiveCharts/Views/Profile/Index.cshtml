@@ -1,6 +1,9 @@
 ﻿
 
-
+<br/>
+<br/>
+<br/>
+<br/>
 <div class="container">
 
     <div class="row">
@@ -43,41 +46,79 @@
 <script>
     google.load('visualization', '1.0', { packages: ['charteditor'] });
     var wrapper = new Object();
-    var chartEditor = null;
+    var chartId = 1;
 
-    function updateChart(width, height) {
-        wrapper[window.currentChartId] = chartEditor.getChartWrapper();
-
-        var wrapperOptions = wrapper[window.currentChartId].getOptions();
-        wrapperOptions.width = width;
-        wrapperOptions.height = height;
-
-        wrapper[window.currentChartId].draw(document.getElementById('editorChart' + window.currentChartId));
-        window.currentChartId = null;
-    }
-
-    function googleInit() {
-        chartEditor = new google.visualization.ChartEditor();
-
-        google.visualization.events.addListener(chartEditor, 'ok', function () {
-            updateChart();
-        });
-    }
-
-    function drawVisualization(chartId) {
-        wrapper[chartId] = new google.visualization.ChartWrapper({
-            chartType: 'ColumnChart',
+    function drawVisualization() {
+        wrapper = new google.visualization.ChartWrapper({
+        	chartType: 'LineChart',
             dataTable: [],
-            containerId: 'editorChart' + chartId
+            containerId: 'editorChart'
         });
 
     }
     
     function addChart() {
-        var chartEditor = $.get('/Profile/CreateChart', { chartId: chartId })
+        $.get('/Profile/CreateChart', { chartId: chartId })
             .done(function(data) {
-                $('#current_chart').append(data);
-                drawVisualization(chartId);
+                $('#current_chart').html(data);
+                drawVisualization();
             });
+    }
+
+    function parseString(str, withQuotes) {
+    	var find = '\'';
+    	var pattern = new RegExp(find, 'g');
+    	str = str.replace(pattern, '\"');
+    	var re = /(?:")([^"]+)(?:")|([^\s"]+)(?=\s+|$)/g;
+    	var res = [], arr = null;
+    	while (arr = re.exec(str)) {
+    		if (withQuotes)
+    			res.push(arr[0]);
+    		else
+    			res.push(arr[1] ? arr[1] : arr[0]);
+    	}
+    	return res;
+    }
+
+    Array.prototype.clean = function (deleteValue) {
+    	for (var i = 0; i < this.length; i++) {
+    		if (this[i] == deleteValue) {
+    			this.splice(i, 1);
+    			i--;
+    		}
+    	}
+    	return this;
+    };
+
+    function parseData(chartId) {
+    	var data = $('#chartData').val();
+    	var lines = data.split('\n').clean("");
+    	var chartData = [];
+    	for (var i = 0; i < lines.length; i++) {
+    		var line = [];
+    		var params = [];
+    		var items = parseString(lines[i]);
+    		for (var j = 0; j < items.length; j++) {
+    			var f = parseFloat(items[j]);
+    			if (f)
+    				params.push(f);
+    			else {
+    				params.push(items[j]);
+    			}
+    		}
+    		chartData.push(line.concat(params));
+    	}
+    	wrapper.setDataTable(chartData);
+    }
+
+    function render() {
+    	var height = $('#chartHeight').val();
+    	var width = $('#chartWidth').val();
+
+    	$('#editorChart').width(width);
+    	$('#editorChart').height(height);
+
+    	parseData();
+    	wrapper.draw();
     }
 </script>
