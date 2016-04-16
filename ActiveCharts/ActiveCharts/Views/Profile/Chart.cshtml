@@ -1,8 +1,11 @@
-﻿
+﻿@model ActiveCharts.ViewModels.ChartViewModel
+
 @{
 	Layout = null;
 }
 
+
+@Html.TextAreaFor(m => m.Data, new { id = "chartData", style = "display: none;" })
 <div id='chart' style="margin: auto"></div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -10,14 +13,53 @@
 	google.charts.load('current', { 'packages': ['corechart'] });
 	google.charts.setOnLoadCallback(drawChart);
 
+	function parseString(str, withQuotes) {
+		var find = '\'';
+		var pattern = new RegExp(find, 'g');
+		str = str.replace(pattern, '\"');
+		var re = /(?:")([^"]+)(?:")|([^\s"]+)(?=\s+|$)/g;
+		var res = [], arr = null;
+		while (arr = re.exec(str)) {
+			if (withQuotes)
+				res.push(arr[0]);
+			else
+				res.push(arr[1] ? arr[1] : arr[0]);
+		}
+		return res;
+	}
+
+	Array.prototype.clean = function (deleteValue) {
+		for (var i = 0; i < this.length; i++) {
+			if (this[i] == deleteValue) {
+				this.splice(i, 1);
+				i--;
+			}
+		}
+		return this;
+	};
+
+
 	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004', 1000, 400],
-          ['2005', 1170, 460],
-          ['2006', 660, 1120],
-          ['2007', 1030, 540]
-		]);
+
+		var dataString = document.getElementById('chartData').value;
+		var lines = dataString.split('\n').clean("");
+		var chartData = [];
+		for (var i = 0; i < lines.length; i++) {
+			var line = [];
+			var params = [];
+			var items = parseString(lines[i]);
+			for (var j = 0; j < items.length; j++) {
+				var f = parseFloat(items[j]);
+				if (f)
+					params.push(f);
+				else {
+					params.push(items[j]);
+				}
+			}
+			chartData.push(line.concat(params));
+		}
+
+		var data = google.visualization.arrayToDataTable(chartData);
 
 		var options = {
 			curveType: 'function'
