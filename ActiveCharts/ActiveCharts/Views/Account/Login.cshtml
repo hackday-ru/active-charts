@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+
 <div class="container">
 
     <div class="row">
@@ -15,14 +19,14 @@
                         <h3 class="thin text-center">Sign in to your account</h3>
                         <hr>
 
-                        <form>
+                        <form method="POST">
                             <div class="top-margin">
                                 <label>Username/Email <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="nickname "class="form-control">
                             </div>
                             <div class="top-margin">
                                 <label>Password <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="password" class="form-control">
                             </div>
 
                             <hr>
