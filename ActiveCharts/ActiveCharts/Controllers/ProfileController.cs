@@ -53,7 +53,7 @@ namespace ActiveCharts.Controllers
 
         private string GetPngLink(string chartId)
         {
-            var url = Url.Action("P", "L", new {id = chartId}, this.Request.Url.Scheme) + ".png";
+            var url = Url.Action("P", "L", new {id = chartId}, this.Request.Url.Scheme);
             return url;
         }
 
