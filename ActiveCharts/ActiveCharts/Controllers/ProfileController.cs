@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ActiveCharts.ViewModels;
 
 namespace ActiveCharts.Controllers
 {
@@ -23,7 +24,8 @@ namespace ActiveCharts.Controllers
 
 		public ActionResult GetChart(string dataSetName)
 		{
-			return View("Chart");
+			var model = new ChartViewModel{ Data = "dfdf fdsf fdsd\n33 33 43\n34 546 2" };
+			return View("Chart", model);
 		}
     }
 }

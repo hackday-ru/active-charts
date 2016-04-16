@@ -4,16 +4,16 @@
 
 <div style="background-color: #eef0f2; margin-bottom: 15px">
     <div style="padding: 5px 15px 15px 15px">
-        <div id="@string.Format("wrapperChart", Model)">
+        <div id="wrapperChart">
             <label class="form-title">Chart data</label>
-            <textarea id=@string.Format("chartData", Model) class="chartDataArea form-field" placeholder="Input chart's data">@ViewBag.ChartData</textarea>
+            <textarea id="chartData" class="chartDataArea form-field" placeholder="Input chart's data">@ViewBag.ChartData</textarea>
             <div style="display: inline">
 
                 <label class="form-title">Height</label>
-                <input type="text" id=@string.Format("chartHeight", Model) class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartHeight ?? 400)" />
+                <input type="text" id="chartHeight" class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartHeight ?? 400)" />
 
                 <label class="form-title">Width</label>
-                <input type="text" id=@string.Format("chartWidth", Model) class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartWidth ?? 400)" />
+                <input type="text" id="chartWidth" class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartWidth ?? 400)" />
                 <div style="float: right">
                     @*<button onclick='configureChart(@Model) ' class="btn btn-info">Настройка</button>*@
                     <button onclick='render()' class="btn btn-success">Build</button>
