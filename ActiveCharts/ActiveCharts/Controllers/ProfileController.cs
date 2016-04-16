@@ -18,7 +18,8 @@ namespace ActiveCharts.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+	        var model = new List<int> {1, 2, 3, 4, 5, 6};
+            return View(model);
         }
 
         public ActionResult CreateChart(int chartId, string chartData, int? chartWidth, int? chartHeight)
@@ -35,5 +36,11 @@ namespace ActiveCharts.Controllers
 			var model = new ChartViewModel{ Data = data };
 			return View("Chart", model);
 		}
+
+	    public ActionResult SaveChart(string data)
+	    {
+		    observeService.SaveChart(data, CurrentUser);
+		    return null;
+	    }
     }
 }

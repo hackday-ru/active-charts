@@ -19,7 +19,8 @@
                     <button onclick='render()' class="btn btn-success">Build</button>
                 </div>
             </div>
-            <div id='@string.Format("editorChart", Model)' style="margin: auto"></div>
+	        <div id='@string.Format("editorChart", Model)' style="margin: auto"></div>
+			<button onclick='save()' class="btn btn-success" id="chartSave" style="display:none">Save</button>
         </div>
     </div>
     <br />

@@ -43,5 +43,16 @@ namespace ActiveCharts.Services
             }
             return "";
         }
+
+	    public void SaveChart(string data, string currentUser)
+	    {
+			var collection = db.GetCollection<ChartData>("chartdata");
+			collection.InsertOne(new ChartData
+			{
+				ObservedDataId = Guid.NewGuid().ToString(),
+				Data = data,
+				UserId = currentUser
+			});
+	    }
     }
 }
