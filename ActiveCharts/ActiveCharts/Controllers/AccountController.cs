@@ -31,7 +31,7 @@ namespace ActiveCharts.Controllers
             if (result)
             {
                 AuthService.LoginUser(ControllerContext.HttpContext, nickname);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Profile");
             }
             ViewBag.ErrorText = "wrong password";
             return View("Login");
