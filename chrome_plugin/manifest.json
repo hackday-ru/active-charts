@@ -14,13 +14,14 @@
   "browser_action": {
     "default_title": "Charts",
     "default_icon": "images/icon.png",
-    "default_popup": "pages/popup.html"
+    "default_popup": "pages/login.html"
   },
 
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
-      "js": ["libs/active_charts.js", "libs/jquery-2.2.3.min.js"]
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["libs/active_charts.js", "libs/jquery-2.2.3.min.js"],
+      "all_frames": true
     }
   ],
 
