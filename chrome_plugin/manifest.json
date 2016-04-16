@@ -1,18 +1,30 @@
 {
+  "manifest_version": 2,
+
   "name": "Active charts",
   "version": "1.0",
   "description": "active charts diargrams",
 
   "permissions": [
     "tabs",
-    "http://activecharts.tk/*"
+    "http://activecharts.tk/*",
+    "webRequest"
   ],
 
   "browser_action": {
     "default_title": "Charts",
     "default_icon": "images/icon.png",
-    "popup": "popup.html"
+    "default_popup": "pages/popup.html"
   },
 
-  "options_page": "options.html"
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["libs/active_charts.js", "libs/jquery-2.2.3.min.js"]
+    }
+  ],
+
+  "background": {
+    "scripts": ["libs/background.js"]
+  }
 }
