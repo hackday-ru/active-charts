@@ -7,10 +7,8 @@ namespace DataTracker
     [BsonIgnoreExtraElements]
     public class ObservedData
     {
-        public ObjectId _id { get; set; }
-        public ObjectId ObserveId { get; set; }
+        public string ObservedDataId { get; set; }
+        public string ObserveId { get; set; }
         public string ChartData { get; set; }
-        //public DateTime Date { get; set; }
-        //public decimal Value { get; set; }
     }
 }

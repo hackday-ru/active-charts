@@ -31,5 +31,16 @@ namespace ActiveCharts.Services
                 XPath = xpath
             });
         }
+
+        public string GetObservedData(string id)
+        {
+            var collection = db.GetCollection<ObservedData>("observerdata");
+            var r = collection.FindSync(o => o.ObservedDataId == id).FirstOrDefault();
+            if (r != null)
+            {
+                return r.ChartData;
+            }
+            return "";
+        }
     }
 }

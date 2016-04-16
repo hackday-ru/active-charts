@@ -23,19 +23,19 @@ namespace DataTracker
                     try
                     {
                         var data = dataTracker.GetDataByXPath(observe.Url, observe.XPath);
-                        var r = dataCollection.FindSync(d => d.ObserveId == observe._id).FirstOrDefault();
+                        var r = dataCollection.FindSync(d => d.ObserveId == observe.ObserveId).FirstOrDefault();
                         if (r == null)
                         {
                             dataCollection.InsertOne(new ObservedData
                             {
-                                ObserveId = observe._id,
+                                ObserveId = observe.ObserveId,
                                 ChartData = "Date Value" + Environment.NewLine + DateTime.Now.ToString() + " " + data
                             });
                         }
                         else
                         {
                             r.ChartData = r.ChartData + Environment.NewLine + DateTime.Now.ToString() + " " + data;
-                            dataCollection.ReplaceOne(o => o._id == r._id, r);
+                            dataCollection.ReplaceOne(o => o.ObservedDataId == r.ObservedDataId, r);
                         }
                     }
                     catch (Exception ex)
