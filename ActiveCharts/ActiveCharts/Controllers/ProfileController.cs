@@ -20,5 +20,10 @@ namespace ActiveCharts.Controllers
             ViewBag.ChartHeight = chartHeight;
             return View(chartId);
         }
+
+		public ActionResult GetChart(string dataSetName)
+		{
+			return View("Chart");
+		}
     }
 }
