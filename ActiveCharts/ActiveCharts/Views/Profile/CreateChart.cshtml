@@ -1,0 +1,33 @@
+﻿@model int
+@{
+    Layout = null;
+}
+
+<div style="background-color: #eef0f2; margin-bottom: 15px">
+    <div style="padding: 5px 15px 15px 15px">
+        <div style="width: 100%">
+            <a class="chartShow" onclick=" showHideChart(@Model) " style="float: right; margin-bottom: 10px;">Скрыть/показать график @Model</a>
+            <div class="clear"></div>
+        </div>
+        <div id="@string.Format("wrapperChart_{0}", Model)">
+            <label class="form-title">Данные</label>
+            <a href="" onclick="transpose(@Model); return false;" class="transpose-link fa fa-retweet" title="Транспонировать"></a>
+            <textarea id=@string.Format("chartData_{0}", Model) class="chartDataArea form-field" placeholder="Введите данные для графика">@ViewBag.ChartData</textarea>
+            <div style="display: inline">
+
+                <label class="form-title">Высота</label>
+                <input type="text" id=@string.Format("chartHeight_{0}", Model) class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartHeight ?? 400)" />
+
+                <label class="form-title">Ширина</label>
+                <input type="text" id=@string.Format("chartWidth_{0}", Model) class="form-field" style="width: 150px" value="@string.Format("{0}", ViewBag.ChartWidth ?? 400)" />
+                <div style="float: right">
+                    <button onclick='configureChart(@Model) ' class="btn btn-info">Настройка</button>
+                    <button onclick='render(@Model) ' class="btn btn-success">Построить</button>
+                </div>
+            </div>
+            <div id='@string.Format("editorChart{0}", Model)' style="margin: auto"></div>
+        </div>
+    </div>
+    <br />
+</div>
+

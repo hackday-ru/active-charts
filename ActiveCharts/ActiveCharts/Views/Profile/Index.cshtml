@@ -1,1 +1,83 @@
 ﻿
+
+
+<div class="container">
+
+    <div class="row">
+        <aside class="col-md-4 sidebar sidebar-left">
+
+            <div class="row widget">
+                <div class="col-xs-12">
+                    <h4>Lorem ipsum dolor sit</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, ratione delectus reiciendis nulla nisi pariatur molestias animi eos repellat? Vel.</p>
+                </div>
+            </div>
+            <div class="row widget">
+                <div class="col-xs-12">
+                    <h4>Lorem ipsum dolor sit</h4>
+                    <p><img src="assets/images/1.jpg" alt="">
+                    </p>
+                </div>
+            </div>
+            <div class="row widget">
+                <div class="col-xs-12">
+                    <h4>Lorem ipsum dolor sit</h4>
+                    <p><img src="assets/images/2.jpg" alt="">
+                    </p>
+                    <p>Qui, debitis, ad, neque reprehenderit laborum soluta dolor voluptate eligendi enim consequuntur eveniet recusandae rerum? Atque eos corporis provident tenetur.</p>
+                </div>
+            </div>
+
+            <button class="btn btn-default" onclick="addChart()">Add chart</button>
+
+        </aside>
+
+        <article class="col-md-8 maincontent" id="current_chart">
+            
+        </article>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+    google.load('visualization', '1.0', { packages: ['charteditor'] });
+    var wrapper = new Object();
+    var chartEditor = null;
+
+    function updateChart(width, height) {
+        wrapper[window.currentChartId] = chartEditor.getChartWrapper();
+
+        var wrapperOptions = wrapper[window.currentChartId].getOptions();
+        wrapperOptions.width = width;
+        wrapperOptions.height = height;
+
+        wrapper[window.currentChartId].draw(document.getElementById('editorChart' + window.currentChartId));
+        window.currentChartId = null;
+    }
+
+    function googleInit() {
+        chartEditor = new google.visualization.ChartEditor();
+
+        google.visualization.events.addListener(chartEditor, 'ok', function () {
+            updateChart();
+        });
+    }
+
+    function drawVisualization(chartId) {
+        wrapper[chartId] = new google.visualization.ChartWrapper({
+            chartType: 'ColumnChart',
+            dataTable: [],
+            containerId: 'editorChart' + chartId
+        });
+
+    }
+    
+    function addChart() {
+        var chartEditor = $.get('/Profile/CreateChart', { chartId: chartId })
+            .done(function(data) {
+                $('#current_chart').append(data);
+                drawVisualization(chartId);
+            });
+    }
+</script>

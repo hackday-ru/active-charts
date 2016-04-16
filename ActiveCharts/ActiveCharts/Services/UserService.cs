@@ -24,7 +24,7 @@ namespace ActiveCharts.Services
         public User GetUser(string nickname)
         {
             var usersCollection = db.GetCollection<User>("users");
-            var user = usersCollection.Find(node => node.Nickname.ToLower() == nickname.ToLower()).FirstOrDefault();
+            var user = usersCollection.Find(node => node.Nickname == nickname).FirstOrDefault();
 
             return user;
         }
