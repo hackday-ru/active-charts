@@ -1,0 +1,18 @@
+{
+  "name": "Active charts",
+  "version": "1.0",
+  "description": "active charts diargrams",
+
+  "permissions": [
+    "tabs",
+    "http://activecharts.tk/*"
+  ],
+
+  "browser_action": {
+    "default_title": "Charts",
+    "default_icon": "images/icon.png",
+    "popup": "popup.html"
+  },
+
+  "options_page": "options.html"
+}
