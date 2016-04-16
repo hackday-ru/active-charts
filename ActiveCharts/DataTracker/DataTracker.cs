@@ -5,29 +5,29 @@ namespace DataTracker
 {
     public interface IDataTracker
     {
-        void GetDataByUrl(string url);
-        void GetDataByXPath(string url, string xpath);
+        decimal GetDataByUrl(string url);
+        decimal GetDataByXPath(string url, string xpath);
     }
 
 
     public class DataTracker : IDataTracker
     {
-        public void GetDataByUrl(string url)
+        public decimal GetDataByUrl(string url)
         {
             var response = new WebClient().DownloadString("url");
             var data = MineData(response);
-            HandleData(data);
+            return data.Value;
         }
 
-        public void GetDataByXPath(string url, string xpath)
+        public decimal GetDataByXPath(string url, string xpath)
         {
             var tracker = new SeleniumTracker.SeleniumTracker();
             var element = tracker.GetDataByXPath(url, xpath);
             var data = MineData(element);
-            HandleData(data);
+            return data.Value;
         }
 
-        private int? MineData(object data)
+        private decimal? MineData(object data)
         {
             int? minedData = null;
             if (data is string)
@@ -40,9 +40,5 @@ namespace DataTracker
             return null;
         }
 
-        private void HandleData(int? data)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
