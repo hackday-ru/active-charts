@@ -1,4 +1,4 @@
-﻿@model List<int>
+﻿
 
 	<br />
 	<br />
@@ -32,7 +32,6 @@
 	<script>
 		google.load('visualization', '1.0', { packages: ['charteditor'] });
 		var wrapper = new Object();
-		var chartId = 1;
 
 		function drawVisualization() {
 			wrapper = new google.visualization.ChartWrapper({
@@ -44,7 +43,7 @@
 		}
 
 		function addChart() {
-			$.get('/Profile/CreateChart', { chartId: chartId })
+			$.get('/Profile/CreateChart')
 				.done(function (data) {
 					$('#current_chart').html(data);
 					drawVisualization();
@@ -117,9 +116,36 @@
 				data: JSON.stringify({ data: $('#chartData').val() }),
 				dataType: "json",
 				contentType: "application/json",
-				success: function (data) {
+				complete: function (data) {
 					location.reload();
 				}
 			});
 		}
+
+		function update(id) {
+			$.ajax({
+				type: "POST",
+				url: '@Url.Action("UpdateChart", "Profile")',
+				data: JSON.stringify({ id: id, data: $('#chartData').val() }),
+				dataType: "json",
+				contentType: "application/json",
+				complete: function () {
+					location.reload();
+				}
+			});
+		}
+
+		$(document).ready(function() {
+			$(".chartPreview").click(function () {
+				var chartId = $(this).attr('id');
+
+				$.get('/Profile/CreateChart', { chartId: chartId })
+				.done(function (data) {
+					$('#current_chart').html(data);
+					drawVisualization();
+					render();
+				});
+			});
+
+		});
 	</script>

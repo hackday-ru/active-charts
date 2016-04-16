@@ -1,0 +1,43 @@
+#content {
+    width: 200px;
+    max-width: 300px;
+    max-height: 200px;
+}
+
+#content .button {
+    border: 1px solid #4285F4;
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#content .button:hover {
+    background-color: #4285F4;
+    color: white;
+}
+
+#content .button:active {
+    background-color: rgba(68, 141, 255, 0.6);
+    color: white;
+}
+
+.spinner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(206, 206, 206, 0.5);
+    display: none;
+}
+
+.spinner, .spinner img {
+    height: 100%;
+}
+
+.spinner img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

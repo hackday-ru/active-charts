@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ActiveCharts.ViewModels.ChartViewModel
+@{
     Layout = null;
 }
 
@@ -6,7 +7,7 @@
     <div style="padding: 5px 15px 15px 15px">
         <div id="wrapperChart">
             <label class="form-title">Chart data</label>
-            <textarea id="chartData" class="chartDataArea form-field" placeholder="Input chart's data">@ViewBag.ChartData</textarea>
+            <textarea id="chartData" class="chartDataArea form-field" placeholder="Input chart's data">@Model.Data</textarea>
             <div style="display: inline">
 
                 <label class="form-title">Height</label>
@@ -20,7 +21,14 @@
                 </div>
             </div>
 	        <div id='@string.Format("editorChart", Model)' style="margin: auto"></div>
-			<button onclick='save()' class="btn btn-success" id="chartSave" style="display:none">Save</button>
+			@if (string.IsNullOrEmpty(Model.Id))
+			{
+				<button onclick='save()' class="btn btn-success" id="chartSave" style="display: none">Save</button>
+			}
+			else
+			{
+				<button onclick="update('@Model.Id')" class="btn btn-success" id="chartSave" style="display: none">Save</button>
+			}
         </div>
     </div>
     <br />

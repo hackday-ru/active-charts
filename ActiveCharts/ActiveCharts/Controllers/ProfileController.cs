@@ -18,16 +18,19 @@ namespace ActiveCharts.Controllers
         }
         public ActionResult Index()
         {
-	        var model = new List<int> {1, 2, 3, 4, 5, 6};
-            return View(model);
+            return View();
         }
 
-        public ActionResult CreateChart(int chartId, string chartData, int? chartWidth, int? chartHeight)
+        public ActionResult CreateChart(string chartId)
         {
-            ViewBag.ChartData = chartData;
-            ViewBag.ChartWidth = chartWidth;
-            ViewBag.ChartHeight = chartHeight;
-            return View(chartId);
+	        var model = new ChartViewModel();
+	        if (!string.IsNullOrEmpty(chartId))
+	        {
+				var data = observeService.GetObservedData(chartId);
+		        model.Id = chartId;
+		        model.Data = data;
+	        }
+			return View(model);
         }
 
 		public ActionResult GetChart(string dataSetName)
@@ -35,6 +38,12 @@ namespace ActiveCharts.Controllers
 		    var data = observeService.GetObservedData(dataSetName);
 			var model = new ChartViewModel{ Data = data };
 			return View("Chart", model);
+		}
+
+		public ActionResult UpdateChart(string id, string data)
+		{
+			observeService.UpdateChart(id, data);
+			return new EmptyResult();
 		}
 
 	    public ActionResult SaveChart(string data)
