@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ActiveCharts.Services.Interfaces;
 using ActiveCharts.ViewModels;
 
 namespace ActiveCharts.Controllers
 {
     public class ProfileController : BaseController
     {
+        private IObserveService observeService;
+
+        public ProfileController(IObserveService observeService)
+        {
+            this.observeService = observeService;
+        }
         public ActionResult Index()
         {
             return View();
@@ -24,7 +31,8 @@ namespace ActiveCharts.Controllers
 
 		public ActionResult GetChart(string dataSetName)
 		{
-			var model = new ChartViewModel{ Data = "dfdf fdsf fdsd\n33 33 43\n34 546 2" };
+		    var data = observeService.GetObservedData(dataSetName);
+			var model = new ChartViewModel{ Data = data };
 			return View("Chart", model);
 		}
     }
