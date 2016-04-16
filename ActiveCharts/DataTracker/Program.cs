@@ -31,7 +31,8 @@ namespace DataTracker
                             {
                                 ObserveId = observe.ObserveId,
                                 Data = "Date Value" + Environment.NewLine + DateTime.Now.ToString() + " " + data,
-                                UserId = observe.UserId
+                                UserId = observe.UserId,
+								DateTime = DateTime.Now
                             });
                         }
                         else

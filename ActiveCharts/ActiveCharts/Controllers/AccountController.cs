@@ -37,6 +37,13 @@ namespace ActiveCharts.Controllers
             return View("Login");
         }
 
+		public ActionResult Logout()
+		{
+			AuthService.LogoutUser(ControllerContext.HttpContext);
+
+			return RedirectToAction("Index", "Home");
+		}
+
 	    public JsonResult GetToken(string nickname, string password)
 	    {
 		    if (!userService.Login(nickname, password)) return null;
