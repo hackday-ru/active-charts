@@ -32,6 +32,7 @@ namespace ActiveCharts.Controllers
 		        model.Id = chartId;
 		        model.Data = data;
 	            model.IframeLink = GetIframeLink(chartId);
+	            model.PngLink = GetPngLink(chartId);
 	        }
 			return View(model);
         }
@@ -45,7 +46,13 @@ namespace ActiveCharts.Controllers
             return res;
         }
 
-		public ActionResult GetChart(string dataSetName)
+        private string GetPngLink(string chartId)
+        {
+            var url = Url.Action("P", "L", new {id = chartId}, this.Request.Url.Scheme) + ".png";
+            return url;
+        }
+
+        public ActionResult GetChart(string dataSetName)
 		{
 		    var data = observeService.GetObservedData(dataSetName);
 			var model = new ChartViewModel{ Data = data };
