@@ -16,14 +16,15 @@ namespace ActiveCharts.Controllers
         }
         public JsonResult Add(string url, string xpath, string token)
         {
-            var user = CurrentUser;
-	        if (!string.IsNullOrEmpty(user))
+	        if (!string.IsNullOrEmpty(token))
 	        {
 				var nickname = userService.GetNicknameByToken(token);
 				observeService.Add(url, xpath, nickname);
-	        }
+                return Json(new { IsSuccess = "true" }, JsonRequestBehavior.AllowGet);
+            }
+            Response.StatusCode = 403;
+            return Json(new { IsSuccess = "false" }, JsonRequestBehavior.AllowGet);
 
-            return Json(new {IsSuccess = "true"} , JsonRequestBehavior.AllowGet);
         }
     }
 }
