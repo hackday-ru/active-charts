@@ -43,11 +43,19 @@ namespace ActiveCharts.Controllers
 		    return null;
 	    }
 
-	    public ActionResult GetChartsPreview()
+	    public ActionResult GetChartsPreview(string token)
 	    {
-		    var charts = observeService.GetUserCharts(CurrentUser);
-
-		    return View("ChartsPreview", charts);
+	        if (!string.IsNullOrEmpty(token))
+	        {
+                var charts = observeService.GetUserCharts("qwerty");
+                return View("ChartsPreview", charts);
+            }
+	        else
+	        {
+                var charts = observeService.GetUserCharts(CurrentUser);
+                return View("ChartsPreview", charts);
+            }
 	    }
+
     }
 }

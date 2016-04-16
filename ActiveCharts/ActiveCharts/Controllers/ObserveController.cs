@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Helpers;
+using System.Web.Mvc;
 using ActiveCharts.Services.Interfaces;
 
 namespace ActiveCharts.Controllers
@@ -14,9 +15,12 @@ namespace ActiveCharts.Controllers
         public JsonResult Add(string url, string xpath, string token)
         {
             var user = CurrentUser;
+            if (!string.IsNullOrEmpty(user))
+                user = "qwerty";
             // TODO get user by tokens
             observeService.Add(url, xpath, user);
-            return null;
+
+            return Json(new {IsSuccess = "true"} , JsonRequestBehavior.AllowGet);
         }
     }
 }
