@@ -9,5 +9,6 @@ namespace ActiveCharts.Services.Interfaces
         string GetObservedData(string id);
 	    void SaveChart(string data, string currentUser);
 	    List<ChartData> GetUserCharts(string currentUser);
+	    void UpdateChart(string id, string data);
     }
 }

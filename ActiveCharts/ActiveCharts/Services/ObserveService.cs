@@ -60,5 +60,14 @@ namespace ActiveCharts.Services
 			var collection = db.GetCollection<ChartData>("chartdata");
 		    return collection.FindSync(c => c.UserId == currentUser).ToList();
 	    }
+
+	    public void UpdateChart(string id, string data)
+	    {
+			var collection = db.GetCollection<ChartData>("chartdata");
+			var r = collection.FindSync(d => d.ObservedDataId == id).FirstOrDefault();
+		    r.Data = data;
+
+		    collection.ReplaceOne(c => c.ObservedDataId == id, r);
+	    }
     }
 }
