@@ -42,7 +42,7 @@ namespace ActiveCharts.Controllers
 		    if (!userService.Login(nickname, password)) return null;
 
 		    var token = userService.CreateToken(nickname);
-		    return Json(token, JsonRequestBehavior.AllowGet);
+		    return Json(new { token = token}, JsonRequestBehavior.AllowGet);
 	    }
     }
 }
