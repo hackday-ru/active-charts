@@ -90,6 +90,15 @@ namespace ActiveCharts.Services
 		    r.Data = data;
 
 		    collection.ReplaceOne(c => c.ObservedDataId == id, r);
+
+	        try
+	        {
+                var pngCollection = db.GetCollection<Pngs>("pngs");
+	            pngCollection.DeleteOne(p => p.ChartId == id);
+	        }
+	        catch (Exception)
+	        {
+	        }
 	    }
 
        
