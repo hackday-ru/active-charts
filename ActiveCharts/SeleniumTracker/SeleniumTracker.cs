@@ -1,17 +1,27 @@
-﻿using OpenQA.Selenium;
+﻿using System.Text.RegularExpressions;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace SeleniumTracker
 {
     public class SeleniumTracker
     {
+        private static ChromeDriver chromeDriver;
+
+        static SeleniumTracker()
+        {
+            chromeDriver = new ChromeDriver();    
+        }
+
         public string GetDataByXPath(string url, string xPath)
         {
-            var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl(url);
-            var text = driver.FindElement(By.XPath(xPath)).Text;
-            var element = driver.FindElementByXPath(xPath);
-            return element.Text;
+            chromeDriver.Navigate().GoToUrl(url);
+            var elementText = chromeDriver.FindElement(By.XPath(xPath)).Text;
+            var text =  Regex.Replace(elementText, "[^0-9.]", "");
+
+            if (elementText.Contains("-") || elementText.Contains("−"))
+                text = "-" + text;
+            return text;
         }
     }
 }

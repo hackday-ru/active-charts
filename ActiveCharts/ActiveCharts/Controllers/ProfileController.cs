@@ -46,6 +46,7 @@ namespace ActiveCharts.Controllers
 
 		public ActionResult CreateChartWithXpath(string url, string xpath)
 		{
+		    observeService.Add(url, xpath, CurrentUser);
 			return null;
 		}
 

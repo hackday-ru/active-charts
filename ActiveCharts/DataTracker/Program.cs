@@ -11,6 +11,7 @@ namespace DataTracker
         static void Main(string[] args)
         {
             var client = new MongoClient(new MongoUrl(ConfigurationManager.AppSettings["MongoUrl"]));
+            var interval = int.Parse(ConfigurationManager.AppSettings["Interval"]);
             string DbName = "activeCharts";
             var db = client.GetDatabase(DbName);
             var observeCollection = db.GetCollection<Observe>("observe");
@@ -47,7 +48,7 @@ namespace DataTracker
                     }
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(interval);
             }
         }
     }

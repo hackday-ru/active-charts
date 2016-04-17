@@ -28,6 +28,7 @@ namespace ActiveCharts.Services
             var collection = db.GetCollection<Observe>("observe");
             collection.InsertOne(new Observe
             {
+                ObserveId = Guid.NewGuid().ToString(),
                 Url = url,
                 UserId = userId,
                 XPath = xpath
@@ -77,6 +78,7 @@ namespace ActiveCharts.Services
             });
 
         }
+
         public List<ChartData> GetUserCharts(string currentUser)
 	    {
 			var collection = db.GetCollection<ChartData>("chartdata");
@@ -100,7 +102,6 @@ namespace ActiveCharts.Services
 	        {
 	        }
 	    }
-
        
     }
 }
