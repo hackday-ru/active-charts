@@ -44,3 +44,7 @@
 #userWrapper table {
     width: 100%;
 }
+
+.centerText {
+    text-align: center;
+}
