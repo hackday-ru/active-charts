@@ -30,15 +30,16 @@ namespace DataTracker
                         {
                             dataCollection.InsertOne(new ChartData
                             {
+                                ObservedDataId = Guid.NewGuid().ToString(),
                                 ObserveId = observe.ObserveId,
-                                Data = "Date Value" + Environment.NewLine + DateTime.Now.ToString() + " " + data,
+                                Data = "Date Value" + "\n" + DateTime.Now.ToString("_dd/MM/yy_hh:mm:ss") + " " + data,
                                 UserId = observe.UserId,
 								DateTime = DateTime.Now
                             });
                         }
                         else
                         {
-                            r.Data = r.Data + Environment.NewLine + DateTime.Now.ToString() + " " + data;
+                            r.Data = r.Data + "\n" + DateTime.Now.ToString("_dd/MM/yy_hh:mm:ss") + " " + data;
                             dataCollection.ReplaceOne(o => o.ObservedDataId == r.ObservedDataId, r);
                         }
                     }

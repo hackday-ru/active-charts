@@ -17,7 +17,7 @@ namespace ActiveCharts.Controllers
         }
         public ActionResult P(string id)
         {
-            var path = Server.MapPath("~/App_Data") + "\\" + Guid.NewGuid() + ".png";
+            var path = Server.MapPath("~/Content/Data") + "\\" + Guid.NewGuid() + ".png";
 
             var data = renderService.GetPngData(id, Url.Action("GetChart", "Profile", new { dataSetName = id }, this.Request.Url.Scheme), path);
             return File(data, "image/png");
@@ -25,7 +25,7 @@ namespace ActiveCharts.Controllers
 
         public ActionResult S(string id)
         {
-            var path = Server.MapPath("~/App_Data") + "\\" + Guid.NewGuid() + ".svg";
+            var path = Server.MapPath("~/Content/Data") + "\\" + Guid.NewGuid() + ".svg";
 
             var data = renderService.GetSvgData(id, Url.Action("GetChart", "Profile", new { dataSetName = id }, this.Request.Url.Scheme), path);
             return File(data, "image/svg");

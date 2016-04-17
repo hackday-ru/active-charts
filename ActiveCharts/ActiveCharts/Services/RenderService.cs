@@ -63,6 +63,8 @@ namespace ActiveCharts.Services
             }
             else
             {
+                var f = File.Create(filePath + "test");
+                f.Flush();
                 var phantomJS = new PhantomJS();
                 var stream = new MemoryStream();
                 phantomJS.Run(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "render-google-chart.js"),

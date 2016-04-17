@@ -34,7 +34,7 @@ namespace ActiveCharts.Controllers
 		        model.Data = data;
 	            model.IframeLink = GetIframeLink(chartId);
 	            model.PngLink = GetPngLink(chartId);
-	            model.SvgLink = GetSvgLink(chartId);
+	            model.SvgLink = null; // GetSvgLink(chartId);
 	        }
 			return View(model);
         }
