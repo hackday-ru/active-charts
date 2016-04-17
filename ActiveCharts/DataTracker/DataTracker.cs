@@ -29,11 +29,11 @@ namespace DataTracker
 
         private decimal? MineData(object data)
         {
-            int? minedData = null;
+            decimal? minedData = null;
             if (data is string)
             {
                 var dataText = data as string;
-                minedData = int.Parse(dataText);
+                minedData = decimal.Parse(dataText);
                 return minedData;
             }
 

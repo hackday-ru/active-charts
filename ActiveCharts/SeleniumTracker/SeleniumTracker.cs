@@ -16,8 +16,8 @@ namespace SeleniumTracker
         public string GetDataByXPath(string url, string xPath)
         {
             chromeDriver.Navigate().GoToUrl(url);
-            var elementText = chromeDriver.FindElement(By.XPath(xPath)).Text;
-            var text =  Regex.Replace(elementText, "[^0-9.]", "");
+            var elementText = chromeDriver.FindElement(By.XPath(xPath)).Text.Replace(',', '.');
+            var text = Regex.Match(elementText, @"[-+]?\d*[.]?\d+").Value;
 
             if (elementText.Contains("-") || elementText.Contains("−"))
                 text = "-" + text;
