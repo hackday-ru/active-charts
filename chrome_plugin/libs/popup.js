@@ -5,6 +5,10 @@ jQuery(document).ready(function () {
 });
 
 Popup.init = function () {
+
+    var userName = localStorage.getItem("userName");
+    jQuery('#userName').html('Hello '+ userName);    
+    
     jQuery('#xpath-button').click(function () {
 
         // chrome.tabs.getSelected(null, function(tab) { //<-- "tab" has all the information
@@ -34,5 +38,11 @@ Popup.init = function () {
             jQuery('.spinner-background').css('display', 'none');
             jQuery('#graph-content').append('<b>Error during loading graph</b>');
         });
+    });
+
+    jQuery('#logoutButton').click(function () {
+        localStorage.removeItem('userToken');
+        localStorage.removeItem("userName");
+        window.close();
     });
 };
