@@ -175,7 +175,6 @@
 				$.get('/Profile/CreateChart', { chartId: chartId })
 				.done(function (data) {
 					$('#current_chart').html(data);
-					drawVisualization();
 					render();
 				});
 			});
