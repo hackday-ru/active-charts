@@ -10,5 +10,7 @@ namespace ActiveCharts.Services.Interfaces
 	    void SaveChart(string data, string currentUser);
 	    List<ChartData> GetUserCharts(string currentUser);
 	    void UpdateChart(string id, string data);
+        void AddChartWithUrl(string url, string user);
+
     }
 }

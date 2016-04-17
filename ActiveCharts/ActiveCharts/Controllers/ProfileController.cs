@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using ActiveCharts.Services.Interfaces;
 using ActiveCharts.ViewModels;
@@ -39,7 +40,8 @@ namespace ActiveCharts.Controllers
 
 	    public ActionResult CreateChartWithUrl(string url)
 	    {
-		    return null;
+		    observeService.AddChartWithUrl(url, CurrentUser);
+	        return null;
 	    }
 
         private string GetIframeLink(string chartId)
