@@ -3,13 +3,16 @@
 @{
 	Layout = null;
 }
+<html>
+<head></head>
+<body>
 
+    @Html.TextAreaFor(m => m.Data, new { id = "chartData", style = "display: none;" })
+    <div id='chart' style="margin: auto"></div>
 
-@Html.TextAreaFor(m => m.Data, new { id = "chartData", style = "display: none;" })
-<div id='chart' style="margin: auto"></div>
-
+    <img src="http://i.imgur.com/LmKXTJO.jpg" style="width: 1px; height: 1px"/>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript">
 	google.charts.load('current', { 'packages': ['corechart'] });
 	google.charts.setOnLoadCallback(drawChart);
 
@@ -70,10 +73,10 @@
 		chart.draw(data, options);
 	}
 
-</script>
+    </script>
 
-
-
+</body>
+</html>
 
 
 
