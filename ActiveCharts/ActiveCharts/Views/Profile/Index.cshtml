@@ -20,7 +20,34 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-action" data-dismiss="modal" onclick="addChartWithUrl()">Add</button>
+						<button type="button" class="btn btn-action" data-dismiss="modal" onclick=" addChartWithUrl() ">Add</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="addByXpath" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Add chart</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Input data url </label>
+							<input type="text" class="form-control" id="newXpathChartDataUrl">
+						</div>
+						<div class="form-group">
+							<label>Input XPath </label>
+							<input type="text" class="form-control" id="newXpathChartXpath">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-action" data-dismiss="modal" onclick="addChartWithXpath()">Add</button>
 					</div>
 				</div>
 
@@ -48,6 +75,12 @@
 					<button class="btn btn-action" data-toggle="modal" data-target="#addByUrl" style="width: 230px; margin-top: 10px">
 						<span class="fa fa-globe" aria-hidden="true"></span>
 						Add chart with url
+					</button>
+				</div>
+				<div class="col-xs-12 text-center">
+					<button class="btn btn-action" data-toggle="modal" data-target="#addByXpath" style="width: 230px; margin-top: 10px">
+						<span class="fa fa-code" aria-hidden="true"></span>
+						Add chart with xpath
 					</button>
 				</div>
 
@@ -83,6 +116,20 @@
 				}
 			});
 		}
+
+		function addChartWithXpath() {
+			$.ajax({
+				type: "POST",
+				url: '@Url.Action("CreateChartWithXpath", "Profile")',
+				data: JSON.stringify({ url: $('#newXpathChartDataUrl').val(), xpath: $('#newXpathChartXpath').val() }),
+				dataType: "json",
+				contentType: "application/json",
+				complete: function (data) {
+					location.reload();
+				}
+			});
+		}
+		
 
 		function parseString(str, withQuotes) {
 			var find = '\'';

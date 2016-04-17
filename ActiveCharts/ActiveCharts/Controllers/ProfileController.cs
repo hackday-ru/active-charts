@@ -44,6 +44,11 @@ namespace ActiveCharts.Controllers
 	        return null;
 	    }
 
+		public ActionResult CreateChartWithXpath(string url, string xpath)
+		{
+			return null;
+		}
+
         private string GetIframeLink(string chartId)
         {
             var s = "<iframe src=\"{0}\" frameborder=\"0\"> </iframe>";
