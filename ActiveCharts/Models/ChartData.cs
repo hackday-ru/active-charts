@@ -11,5 +11,7 @@ namespace Models
         public string Data { get; set; }
         public string UserId { get; set; }
 		public DateTime DateTime { get; set; }
+        public bool? ByUrl { get; set; }
+        public string Url { get; set; }
     }
 }

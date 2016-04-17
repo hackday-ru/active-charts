@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Web;
 using ActiveCharts.Models;
 using ActiveCharts.Services.Interfaces;
@@ -39,6 +40,11 @@ namespace ActiveCharts.Services
             var r = collection.FindSync(o => o.ObservedDataId == id).FirstOrDefault();
             if (r != null)
             {
+                if (r.ByUrl.HasValue && r.ByUrl.Value)
+                {
+                    var response = new WebClient().DownloadString(r.Url + "?" + Guid.NewGuid());
+                    return response;
+                }
                 return r.Data;
             }
             return "";
@@ -56,7 +62,22 @@ namespace ActiveCharts.Services
 			});
 	    }
 
-	    public List<ChartData> GetUserCharts(string currentUser)
+        public void AddChartWithUrl(string url, string user)
+        {
+            var response = new WebClient().DownloadString(url);
+            var collection = db.GetCollection<ChartData>("chartdata");
+            collection.InsertOne(new ChartData
+            {
+                ObservedDataId = Guid.NewGuid().ToString(),
+                Data = response,
+                UserId = user,
+                DateTime = DateTime.Now,
+                ByUrl = true,
+                Url = url
+            });
+
+        }
+        public List<ChartData> GetUserCharts(string currentUser)
 	    {
 			var collection = db.GetCollection<ChartData>("chartdata");
 		    return collection.FindSync(c => c.UserId == currentUser).ToList();
@@ -70,5 +91,7 @@ namespace ActiveCharts.Services
 
 		    collection.ReplaceOne(c => c.ObservedDataId == id, r);
 	    }
+
+       
     }
 }
