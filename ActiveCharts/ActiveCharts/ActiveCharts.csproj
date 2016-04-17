@@ -142,6 +142,9 @@
     <Content Include="rasterize.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="render-google-chart.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\google-map.js" />
     <Content Include="Scripts\headroom.min.js" />
     <Content Include="Scripts\html5shiv.js" />

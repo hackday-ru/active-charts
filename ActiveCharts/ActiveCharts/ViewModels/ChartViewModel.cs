@@ -11,5 +11,7 @@ namespace ActiveCharts.ViewModels
 		public string Data { get; set; }
         public string PngLink { get; set; }
         public string IframeLink { get; set; }
+        public string SvgLink { get; set; }
+        public string Url { get; set; }
 	}
 }

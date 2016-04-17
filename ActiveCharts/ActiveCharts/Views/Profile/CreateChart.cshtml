@@ -31,13 +31,19 @@
 		}
 
 
-		@if (!String.IsNullOrEmpty(Model.PngLink))
+	    @if (!String.IsNullOrEmpty(Model.PngLink))
 		{
 			<div class="form-group">
 				<label>png link:</label>
 				<input type="text" class="form-control" value="@Model.PngLink">
 			</div>
 		}
+        @if (!String.IsNullOrEmpty(Model.SvgLink))
+        {
+            <div class="form-group">
+                <label>svg link:</label>
+                <input type="text" class="form-control" value="@Model.SvgLink">
+            </div>}
 		@if (!String.IsNullOrEmpty(Model.IframeLink))
 		{
 			<div class="form-group">
@@ -45,6 +51,7 @@
 				<textarea class="form-control">@Html.Raw(Model.IframeLink)</textarea>
 			</div>
 		}
+
 	</div>
 
 </div>

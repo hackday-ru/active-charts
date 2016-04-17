@@ -34,11 +34,14 @@ namespace ActiveCharts.Controllers
 		        model.Data = data;
 	            model.IframeLink = GetIframeLink(chartId);
 	            model.PngLink = GetPngLink(chartId);
+	            model.SvgLink = GetSvgLink(chartId);
 	        }
 			return View(model);
         }
 
-	    public ActionResult CreateChartWithUrl(string url)
+        
+
+        public ActionResult CreateChartWithUrl(string url)
 	    {
 		    observeService.AddChartWithUrl(url, CurrentUser);
 	        return null;
@@ -57,6 +60,11 @@ namespace ActiveCharts.Controllers
             //http://localhost:3014/Profile/GetChart?dataSetName=7e7c2d7b-c605-47de-9ff5-ea3c2580b3e0
             var res = string.Format(s, url);
             return res;
+        }
+        private string GetSvgLink(string chartId)
+        {
+            var url = Url.Action("S", "L", new { id = chartId }, this.Request.Url.Scheme);
+            return url;
         }
 
         private string GetPngLink(string chartId)

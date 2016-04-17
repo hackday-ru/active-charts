@@ -22,5 +22,13 @@ namespace ActiveCharts.Controllers
             var data = renderService.GetPngData(id, Url.Action("GetChart", "Profile", new { dataSetName = id }, this.Request.Url.Scheme), path);
             return File(data, "image/png");
         }
+
+        public ActionResult S(string id)
+        {
+            var path = Server.MapPath("~/App_Data") + "\\" + Guid.NewGuid() + ".svg";
+
+            var data = renderService.GetSvgData(id, Url.Action("GetChart", "Profile", new { dataSetName = id }, this.Request.Url.Scheme), path);
+            return File(data, "image/svg");
+        }
     }
 }

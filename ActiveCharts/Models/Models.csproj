@@ -52,6 +52,7 @@
     <Compile Include="Observe.cs" />
     <Compile Include="Pngs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Svgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
