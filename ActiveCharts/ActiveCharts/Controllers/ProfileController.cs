@@ -64,6 +64,13 @@ namespace ActiveCharts.Controllers
 			return View("Chart", model);
 		}
 
+		public ActionResult GetChartSmall(string dataSetName)
+		{
+			var data = observeService.GetObservedData(dataSetName);
+			var model = new ChartViewModel { Data = data };
+			return View("SmallChart", model);
+		}
+
 		public ActionResult UpdateChart(string id, string data)
 		{
 			observeService.UpdateChart(id, data);
