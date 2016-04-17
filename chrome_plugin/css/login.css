@@ -8,6 +8,7 @@
     border-radius: 5px;
     margin-bottom: 5px;
     margin-top: 5px;
+    width: 80px;
 }
 
 .loginButtons .button:hover {
@@ -18,4 +19,11 @@
 .loginButtons .button:active {
     background-color: rgba(68, 141, 255, 0.6);
     color: white;
+}
+
+#message {
+    display: none;
+    color: red;
+    font-weight: bold;
+    text-align: center;
 }
